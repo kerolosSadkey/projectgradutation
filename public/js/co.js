@@ -147,8 +147,8 @@ $(".sttingcomment").click(function(){
 });
 
 $(".showcomment").click(function(){
-  var el=  $(this).parent().parent().parent().children().eq(7).children().eq(0);
-  //var el  =$(this).parent().parent().after('.all.comments');
+ 
+  var el  =$(this).parent().parent().siblings('.all').children().eq(0);
   console.log(el);
      el.slideToggle("500");
 });
