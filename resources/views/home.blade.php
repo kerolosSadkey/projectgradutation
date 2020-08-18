@@ -22,9 +22,41 @@
        
     </head>
     <body>
-        @extends('botmanchat')
+        
+    <script src="js/jquery-3.4.1.js"></script>
+    @php
+        $language = session()->get('lang');
+        if($language =='en'){
+            echo "<script>
+                $(function(){
+                    $('.profile-div-lang-img').attr('src','img/en.png');
+
+                    $('.dental_service_div h4').css('text-align','left');
+                    $('.dental_service_div p').css('text-align','left');
+                    $('body').css('direction','ltr');
+                    $('.showmoreservice').css('right','10');
+                    $('.showmoreservice').css('bottom','-2');
+                });
+            </script>";
+            }elseif($language == 'ar'){
+                echo "<script>
+                $(function(){
+                    $('.profile-div-lang-img').attr('src','img/ar.png');
+
+                    $('.dental_service_div h4').css('text-align','right');
+                    $('.dental_service_div p').css('text-align','right');
+                    $('body').css('direction','rtl');
+                    $('.sign-in').css('width','170px');
+                   
+                });
+            </script>";
+            }
+        @endphp
+       
+
+        
     <!--  -----   navbar  ------    -->
-    @extends("navbarextend");
+      @extends("navbarextend");
         <div class="" id="firstPage">
     <!--  -----   carousel  ------    -->
 
@@ -52,7 +84,7 @@
 
                 <div class="carousel-caption carousel-caption-edit d-none d-md-block">
                     <p id="carousel-caption-paragraph-lg">
-                        Welcome <span id="carousel-caption-paragraph-sm">to <br></span>Shiny
+                        <span>{{trans('main.welcome')}}</span> <span id="carousel-caption-paragraph-sm">{{trans('main.to')}} <br></span>Shiny
                         <span id="carousel-caption-paragraph-sm">Dental </span>care
                         <br><span id="carousel-caption-paragraph-sm">clinic </span>
 
@@ -61,34 +93,19 @@
 
                 <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+                    <span class="sr-only">{{trans('main.Previous')}}</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
+                    <span class="sr-only">{{trans('main.Next')}}</span>
                 </a>
             </div>
 
     <!--  -----   why choose us  ------  -->
                  
             <div class="container containerhide">
-                <h1 class="hed1">Why Choose Us?  
-                  @php
-              $s="";
-        for($i=1;$i<8;$i++){
-            if(session()->has("pr".$i)){
-             $r= DB::table('treatments')->select("treatments.*")->where("id",session()->get("pr".$i))->get();
-           
-             if($r[0]->analgesics != "null")
-                $s  .= $r[0]->analgesics. " and ";
-            
-            if($r[0]->antibiotics != "null")
-                $s  .= $r[0]->analgesics. " and ";
-            }
-        }
-            print($s);
-             
-                  @endphp
+                <h1 class="hed1">{{trans('main.Why Choose Us?')}}  
+                  
                   
             </h1>
                 <div class="row">
@@ -99,22 +116,22 @@
 
                         <div class="col-lg-5 chosimg-div" id="choose-div" style="background-color: #f4f9fc;">
                             <img class="choose-img2" src="img\choose us1.png">
-                            <h4>Experienced Doctors</h4>
+                            <h4>{{trans('main.edoctor')}}</h4>
 
                         </div>
                         <div class="col-lg-5 chosimg-div" id="choose-div" style="background-color: #f4f9fc;">
                             <img class="choose-img2" src="img\choose us2.png">
-                            <h4>20 Years of Experience</h4>
+                            <h4>20 <p>{{trans('main.Years of Experience')}}</p></h4>
 
                         </div><br>
                         <div class="col-lg-5 chosimg-div" id="choose-div" style="background-color: #f4f9fc;">
                             <img class="choose-img2" src="img\choose us3.png">
-                            <h4>Successful Cases</h4>
+                            <h4>{{trans('main.Successful Cases')}}</h4>
 
                         </div>
                         <div class="col-lg-5 chosimg-div" id="choose-div" style="background-color: #f4f9fc;">
                             <img class="choose-img2" src="img\choose us4.png">
-                            <h4>Happy  Patient</h4>
+                            <h4>{{trans('main.Happy  Patient')}}</h4>
 
                         </div>
 
@@ -133,10 +150,10 @@
                             <div class="row">
                                     <div class="ask_front"></div>
                                     <div class="ask_back_detail">
-                                        <h1>Put your question</h1>
-                                        <p>Doctors will answer</p>
+                                        <h1>{{trans('main.Put your question')}}</h1>
+                                        <p>{{trans('main.Doctors will answer')}}</p>
                                         <a href="/ask">
-                                            <button type="button" class="btn btn-primary ask_btn">Ask Doctor</button>
+                                            <button type="button" class="btn btn-primary ask_btn">{{trans('main.ASK DOCTOR')}}</button>
                                         </a>
 
                                     </div>
@@ -150,8 +167,8 @@
     <!--   ----   Dental Services   -------  -->
 
             <div class="container containerhide dental_services" id="dental_services">
-                <h1 class="hed1">Dental Services</h1>
-                <div class="row">
+                <h1 class="hed1">{{trans('main.DENTAL SERVICES')}}</h1>
+                <div class="dental_service_div row">
 
                     <div class="service-detial">
                         <div class="service-detial-img">
@@ -167,104 +184,50 @@
 
                     <div class="col-lg-4 col-sm-6 col-xs-12 service-div">
                         <img src="img\services-1.jpg" id="service-img" class="col-lg-12">
-                        <h4>Root Canal Treatment</h4>
-                        <p>
-                            A root canal is a treatment used to repair and save a tooth
-                            that is badly decayed or becomes infected. During a root canal
-                            procedure, the nerve and pulp are removed and the inside of the
-                            tooth is cleaned and sealed. Without treatment, the tissue surrounding
-                            the tooth will become infected and abscesses may form.
-                            "Root canal" is the term used to describe the natural cavity
-                            within the center of the tooth. The pulp or pulp chamber is the soft
-                            area within the root canal. The tooth's nerve lies within the root canal.
+                        <h4>{{trans('main.Root Canal Treatment')}}</h4>
+                          <span class="showmoreservice">{{trans('main.showinfo')}}</span>
+                        <p class="hide">
+                            {{trans('main.root canal')}}    
                         </p>
                     </div>
                     <div class="col-lg-4 col-sm-6 col-xs-12 service-div">
                         <img src="img\services-2.jpg" id="service-img" class="col-lg-12">
-                        <h4>Dentures</h4>
-                        <p>
-                            A denture is a removable replacement for missing
-                            teeth and surrounding tissues. Two types of dentures are
-                            available -- complete and partial dentures. Complete dentures
-                            are used when all the teeth are missing, while partial dentures
-                            are used when some natural teeth remain.
-                            Complete Dentures
-                            Complete dentures can be either "conventional" or "immediate."
-                            Made after the teeth have been removed and the gum tissue has begun
-                            to heal, a conventional denture is ready for placement in the mouth
-                            about eight to 12 weeks after the teeth have been removed.
+                        <h4>{{trans('main.Dentures')}}</h4>
+                        <span class="showmoreservice">{{trans('main.showinfo')}}</span>
+                        <p class="hide">
+                            {{trans('main.denture ')}}    
                         </p>
                     </div>
                     <div class="col-lg-4 col-sm-6 col-xs-12 service-div">
                         <img src="img\services-3.jpg" id="service-img" class="col-lg-12">
-                        <h4>Fillings</h4>
-                        <p>
-                            A filling is a way to restore a tooth damaged by decay back to its
-                            normal function and shape. When a dentist gives you a filling, he
-                            or she first removes the decayed tooth material, cleans the affected
-                            area, and then fills the cleaned out cavity with a filling material.
-                            By closing off spaces where bacteria can enter, a filling also helps
-                            prevent further decay. Materials used for fillings include gold,
-                            porcelain, a composite resin (tooth-colored fillings), and an amalgam
-                            (an alloy of mercury, silver, copper, tin and sometimes zinc).
+                        <h4>{{trans('main.Fillings')}} </h4>
+                        <span class="showmoreservice">{{trans('main.showinfo')}}</span>
+                        <p class="hide">
+                            {{trans('main.filling')}}
                         </p>
                     </div>
                     <div class="col-lg-4 col-sm-6 col-xs-12 service-div">
                         <img src="img\services-4.jpg" id="service-img" class="col-lg-12">
-                        <h4>Scaling</h4>
-                        <p>
-                            Dental scaling is routinely performed to help patients with gum
-                            disease and excessive plaque buildup. While a standard cleaning
-                            will address the surface of the tooth, scaling goes much deeper.
-                            If your dentist suggests dental scaling and root planing for your teeth,
-                            it’s helpful to know what this means so you can prepare for what’s ahead.
-                            Understanding Scaling
-                            Scaling is a common dental procedure for patients
-                            with gum disease. This is a type of dental cleaning that
-                            reaches below the gumline to remove plaque buildup.
-                            The process of scaling and root planing the teeth is often referred
-                            to as a deep cleaning. This treatment goes beyond the general cleaning
-                            that you receive with your regular checkup and annual visit.
-
+                        <h4>{{trans('main.Scaling')}}</h4>
+                        <span class="showmoreservice">{{trans('main.showinfo')}}</span>
+                        <p class="hide">
+                            {{trans('main.Dental scaling')}}
                         </p>
                     </div>
                     <div class="col-lg-4 col-sm-6 col-xs-12 service-div">
                         <img src="img\services-5.jpg" id="service-img" class="col-lg-12">
-                        <h4>Prevention of tooth decay</h4>
-                        <p>
-                            Tooth decay is parts of teeth with rot that may progress to
-                            small or large holes gradually.
-
-                            Tooth decay is one of the most common health
-                            problems around the world. It is widespread, mainly, among children
-                            and adolescents, but every person in his mouth has teeth that may develop
-                            cavities. And if tooth decay is not treated, the holes may get bigger and wider
-                            , causing severe pain, inflammation,
-                            and even tooth loss and other complications.
-                            Cleaning (rubbing) the teeth after eating or drinking
-
-                            Mouth rinse
-                            Visit a dentist regularly
-                            Checking the possibility of tightening gaps between teeth
-                            Drinking water from taps (faucets)
-                            Refrain as much as possible from eating snacks and sweetened drinks
-                            Eat foods that strengthen dental health
-                            Fluoride treatment
-                              Use antibacterial agents, if necessary
+                        <h4>{{trans('main.Prevention of tooth decay')}}</h4>
+                        <span class="showmoreservice">{{trans('main.showinfo')}}</span>
+                        <p class="hide">
+                            {{trans('main.Tooth decay')}}
                         </p>
                     </div>
                     <div class="col-lg-4 col-sm-6 col-xs-12 service-div">
                         <img src="img\services-6.jpg" id="service-img" class="col-lg-12">
-                        <h4>Teeth Whitening</h4>
-                        <p>
-                            Teeth whitening is a change from the color of the tooth
-                            to a lighter color and is a conservative method for treating tooth
-                            discoloration and meets the needs of an increasing number of patients
-                            who require a whiter smile, moreover, teeth whitening is technically easier
-                            and less expensive than any other type of treatment Aesthetic, such as
-                            veners treatment. Teeth whitening can be achieved either by changing
-                            the internal color or by removing and controlling the formation
-                            of external stains.
+                        <h4>{{trans('main.Teeth Whitening')}}</h4>
+                        <span class="showmoreservice">{{trans('main.showinfo')}}</span>
+                        <p class="hide">
+                            {{trans('main.teeth')}}
                         </p>
                     </div>
 
@@ -283,22 +246,22 @@
                         <div class="col-lg-3 col-sm-6 feature-div">
                             <img src="img\feature-1.png" class="rounded-circle">
                             <h2>4,500</h2>
-                            <p>Happy  Patient</p>
+                            <p>{{trans('main.Happy  Patient')}}</p>
                         </div>
                         <div class="col-lg-3 col-sm-6 feature-div">
                             <img src="img\feature-2.png" class="rounded-circle">
                             <h2>15,600+</h2>
-                            <p>Successful Cases</p>
+                            <p>{{trans('main.Successful Cases')}}</p>
                         </div>
                         <div class="col-lg-3 col-sm-6 feature-div">
                             <img src="img\feature-3.png" class="rounded-circle">
                             <h2>20</h2>
-                            <p>Years of Experience</p>
+                            <p>{{trans('main.Years of Experience')}}</p>
                         </div>
                         <div class="col-lg-3 col-sm-6 feature-div">
                             <img src="img\feature-4.png" class="rounded-circle">
                             <h2>25</h2>
-                            <p>Experienced Doctors</p>
+                            <p>{{trans('main.edoctor')}}</p>
                         </div>
                     </div>
                 </div>
@@ -309,7 +272,7 @@
     <!--  --------   Our Doctors    ------- -->
 
             <div class="container containerhide" id="our-doctors">
-                <h1 class="hed1">Our Doctors</h1>
+                <h1 class="hed1">{{trans('main.doctor')}}</h1>
                 <div class="row">
                     @if(isset($datadoctor) )
                     @if( count($datadoctor ) > 0)
@@ -328,8 +291,17 @@
                             </p>
                         </div>
                     </div>
+
+                           
                                 @endif
                         @endforeach
+                        @if(count($datadoctor)== 4)
+                        <div class="showmore-doctor">
+                        <a href="{{ route("showdoctor") }}">
+                            <button type="button" class="btn btn-primary showmore_btn">Show More</button>
+                        </a>
+                        </div>
+                        @endif
                     @endif
                     @endif
 
@@ -342,21 +314,21 @@
                 <div class="container">
 
                     <p>
-                    <span>Register for free</span>
-                    <a class="btn btn-rounded btn-light footer-btn" href="/registeration">Sign In</a>
+                    <span>{{trans('main.Register for free')}}</span>
+                    <a class="btn btn-rounded btn-light footer-btn" href="/register">{{trans('main.SIGN IN')}}</a>
                     </p>
                     <ul class="ml-auto footerlinks">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/#firstPage">HOME <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/#firstPage">{{trans("main.HOME")  }} <span class="sr-only">{{trans('main.(current)')}}</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/ask">ASK DOCTOR</a>
+                            <a class="nav-link" href="/ask">{{trans('main.ASK DOCTOR')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/#dental_services">DENTAL SERVICES</a>
+                            <a class="nav-link" href="/#dental_services">{{trans('main.DENTAL SERVICES')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/#our-doctors">DOCTORS</a>
+                            <a class="nav-link" href="/#our-doctors">{{trans('main.DOCTORS')}}</a>
                         </li>
                     </ul>
 
@@ -364,7 +336,7 @@
                 </div>
 
                 <div style="background: #111111;">
-                    <p>© 2019 Copyright: All right reserved.Made with us for a better teeth. </p>
+                    <p>{{trans('main.copy')}}</p>
                 </div>
 
                 <div class="arrow-top">

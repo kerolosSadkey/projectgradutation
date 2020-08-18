@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('describtion')->nullable();
             $table->string('clenicAdress')->nullable();
             $table->mediumText('image')->nullable();
+            $table->string('Language')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

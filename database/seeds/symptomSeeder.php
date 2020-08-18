@@ -13,13 +13,16 @@ class symptomSeeder extends Seeder
     public function run()
     {
         DB::table('symptoms')->insert([
-              "name"=>'Pulpitis'
-        ]);
-        DB::table('symptoms')->insert([
-            "name"=>'periodontitis'
+            "name"=>'Pulpitis',
+            "namear"=>'التهاب العصب'
       ]);
       DB::table('symptoms')->insert([
-        "name"=>'Deep pockets'
-     ]);
+          "name"=>'periodontitis',
+          "namear"=>'التهاب اللثة'
+    ]);
+    DB::table('symptoms')->insert([
+      "name"=>'Deep pockets',
+      "namear"=>'الحالات العميقة'
+   ]);
     }
 }

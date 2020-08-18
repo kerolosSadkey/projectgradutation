@@ -6,6 +6,7 @@ use App\user;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class doctorController extends Controller
@@ -81,5 +82,47 @@ class doctorController extends Controller
         return $request->all();
     }
 
+
+    public function fetchdoctor(){
+        $datadoctors= DB::table('users')->select("*")->where("role","doctor")->orWhere("role","Admin")->paginate(4);
+        
+    
+    return view('doctors',compact('datadoctors'));
+    }
+          
+    public function updatedoctor(Request $request){
+        $dataprofile = user::where('id', $request->input("id"))->get();
+        foreach ($dataprofile as $edit){
+            $namefile=$edit->image;
+        }
+            $this->validate($request,[
+                "sl-role"=>"required"
+            ]);
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $exetantion = $file->getClientOriginalName();
+                $namefile = time() .'.'.$exetantion;
+                $file->move(  'publicimages/',$namefile);
+
+            }
+                user::where('id', $request->input("id"))->update([
+                    'fristname' => $request->input('fname'),
+                    'lastname' => $request->input('lname'),
+                    'email' => $request->input('email'),
+                     "describtion"=>$request->input("description"),
+                     "clenicAdress"=>$request->input("clenicAdress"),
+                     "role"=>$request->input("sl-role"),
+                    'phone' => $request->input('phone'),
+                     'image'=> $namefile
+
+                ]);
+                return redirect()->back();
+    }
+
+    public function deletedoctor($id){
+       $doc= user::find($id);
+       $doc->delete();
+        return redirect()->back();
+    }
 
 }

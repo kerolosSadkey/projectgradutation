@@ -16,6 +16,7 @@ class CreateTreatmentsTable extends Migration
         Schema::create('treatments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Symptoms');
+            $table->string('Symptomsar');
             $table->string('analgesics')->nullable();
             $table->string('antibiotics')->nullable();
             $table->bigInteger('SymId')->unsigned();

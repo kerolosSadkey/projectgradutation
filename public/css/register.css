@@ -93,7 +93,7 @@ textarea.form-control{
 ,.password-char1,.password-char1-confirm,.descripe-char{
     position: absolute;
     top: 39px;
-    left: 16px;
+    
     color: #7A8489;
 }
 

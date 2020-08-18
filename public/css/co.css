@@ -6,13 +6,15 @@ body{
     padding-top: 1%;
 
 }
+.hide{
+    display: none;
+}
 .container{
-    width: 900px;
+    width: 60%;
 }
 textarea.form-control{
     padding: 8px;
     overflow: hidden;
-
     resize: none;
 }
 /*  the main comment*/
@@ -20,6 +22,11 @@ textarea.form-control{
     border: 1px solid #CED4DA;
     padding: 30px;
     border-radius: 5px;
+}
+
+.postbody{
+    line-height: 30px;
+    overflow: hidden;
 }
 .upload-img-bt{
     float: left;
@@ -36,6 +43,7 @@ textarea.form-control{
     padding: 30px;
     border-radius: 5px;
     margin: 10px 0px;
+    
 }
         /*  person image profile  */
 .person_comment_img ,.comment_img{
@@ -51,9 +59,10 @@ textarea.form-control{
     text-align: center;
     border-top: 1px solid #CED4DA;
     border-bottom: 1px solid #CED4DA;
-    padding: 5px;
+    padding: 3px;
 }
 .interaction div,.interaction-replay div{
+    
     flex: 1 0;
     cursor: pointer;
     padding: 5px;
@@ -99,7 +108,7 @@ textarea.form-control{
     margin: 5px 0px;
 }
   /**/
-  .editspan, .deletespan{
+  /*.editspan, .deletespan{
        position: absolute;
        right: 20px;
        top: 20px;
@@ -126,9 +135,9 @@ textarea.form-control{
     color: #fff;
     text-decoration: none;
     
-}
+}*/
  /**/
- .showpostforedit , .showpostfordelete{
+ .showpostforedit , .showpostfordelete ,.showcommentforedit, .showcommentfordelete{
     background-color: #007bff;
      opacity: 1;
     display: none;
@@ -143,7 +152,7 @@ textarea.form-control{
     border-radius: 10px;
     text-align: center;
  }
- .showpostforedit #cancle, .showpostfordelete #cancle{
+ .showpostforedit #cancle, .showpostfordelete #cancle , .showcommentforedit #cancle, .showcommentfordelete #cancle{ 
     position: absolute;
     color: #fff;
       right: 2%;
@@ -154,7 +163,7 @@ textarea.form-control{
 
 }
 
-.showpostforedit #postbodytextarea{
+.showpostforedit #postbodytextarea , .showcommentforedit #commentbodytextarea{
     width: 80%;
     height: 120px;
     margin-top: 10%;
@@ -163,17 +172,17 @@ textarea.form-control{
     margin-bottom: 5%;
        color: #000;
 }
-.showpostforedit .edit-post-submit {
+.showpostforedit .edit-post-submit, .showcommentforedit .edit-comment-submit {
     float:right;
     margin-right:10%;
   background-color: #fff;
   color: #000;
 }
 
-.showpostfordelete h3{
+.showpostfordelete h3 ,.showcommentfordelete h3{
    margin-top: 30px;
 }
- .showpostfordelete .delete-post-submit{
+ .showpostfordelete .delete-post-submit ,.showcommentfordelete .delete-comment-submit{
     float:right;
     margin-right:20%;
   background-color: #fff;
@@ -186,3 +195,79 @@ textarea.form-control{
   background-color: #fff;
   color: #000;
 }
+.stting ,.sttingcomment{
+    position: absolute;
+    top: 12px;
+    right: 2px;
+}
+.sttingcomment{
+    position: absolute;
+    top: 0px;
+    right: 20px;
+}
+.stting i{
+   font-size: 20px;
+}
+.sttingcomment i{
+    font-size: 20;
+}
+.stting-content ,.stting-content-comment{
+    position: absolute;
+    background-color: #40B0DE;
+    top: -40;
+    right: -70px;
+    z-index: 555;
+      display: none;
+      padding: 12px;
+      border-radius: 5px;  
+}
+
+.stting-content a , .stting-content p ,.stting-content-comment a , .stting-content-comment p{
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #f4f9fc;
+    margin-top: 8px;
+    cursor: pointer;
+
+}
+
+.showimg{
+    position: absolute;
+    height: 70%;
+    width: 50%;
+    top: 20%;
+    left: 25%;
+    z-index: 2;
+    padding: 0 25px;
+    display: none;
+    overflow: auto;
+    background: #f4f9fc;
+    box-shadow: 0px 0px 45px rgb(155, 155, 247);
+    border-radius: 10px;
+    
+
+}
+
+.showimg img{
+    margin-top: 15%;
+    margin-left: 15%;
+   width: 70%;
+   height: 60%;
+
+}
+.showimg #cancle{ 
+    position: absolute;
+    color: #000;
+      right: 2%;
+       top: 0;
+       cursor: pointer;
+        font-size: 40px;
+        font-weight: bolder;
+
+}
+.datepost{
+    font-size: 12px;
+}
+

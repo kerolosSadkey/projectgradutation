@@ -23,14 +23,26 @@ class PulpitisOptionConversion extends Conversation
                 $arrid=[];
            
             $spys= DB::table('treatments')->select("treatments.*")->where("SymId",1)->get();
+            if(session()->get('lang') == "ar"){
+                foreach($spys as $spy){
+                     array_push($arrsyps, $spy->Symptomsar);
+                     array_push($arrid, $spy->id);
              
-           foreach($spys as $spy){
-                array_push($arrsyps, $spy->Symptoms);
-                array_push($arrid, $spy->id);
-        
-            }
-           
-            $question = Question::create("What do you feel  pain?")
+                 }
+                 $next="اضغط التالي للاستمرار";
+                 $str="اي الم تشعر ؟";
+             }
+          
+            else{
+                foreach($spys as $spy){
+                     array_push($arrsyps, $spy->Symptoms);
+                     array_push($arrid, $spy->id);
+             
+                 }
+                 $next="press to Next to continue";
+                 $str="which do you feel  pain?";
+             } 
+            $question = Question::create($str)
             ->fallback('Unable choose option')
             ->callbackId('ask option')
                 ->addButtons([
@@ -38,13 +50,20 @@ class PulpitisOptionConversion extends Conversation
                         Button::create($arrsyps[1])->value("2"),
                         Button::create($arrsyps[2])->value("3"),
                         Button::create($arrsyps[3])->value("4"),
-                        Button::create("press to Next question")->value("next"),
+                        Button::create($next)->value("next"),
                       
                         
                 ]);
                 
                 $this->bot->ask($question,function(Answer $answer){
                     if ($answer->isInteractiveMessageReply()){
+                        if(session()->get('lang') == "ar"){
+                            $num="انت اختارت من الاعراض رقم ";
+                        }
+                        else{
+                       
+                            $num="You have added Diagnosis Selection Number ";
+                        } 
     
                         $val=$answer->getValue();
                         
@@ -52,24 +71,24 @@ class PulpitisOptionConversion extends Conversation
                             case "1": 
                                 
                                 session()->put("p1", $val);
-                                $this->bot->reply("You have added Diagnosis Selection Number ".$answer->getText());
+                                $this->bot->reply($num." ".$answer->getText());
                                  $this->bot->startConversation(new PulpitisOptionConversion());
                             break;   
                             case "2": 
                                
                                  session()->put("p2", $val);
-                               $this->bot->reply("You have added Diagnosis Selection Number ".$answer->getText());
+                               $this->bot->reply($num." ".$answer->getText());
                                 $this->bot->startConversation(new PulpitisOptionConversion());
                             break; 
                             case "3": 
                               
                                 session()->put("p3", $val);
-                                $this->bot->reply("You have added Diagnosis Selection Number ".$answer->getText());
+                                $this->bot->reply($num." ".$answer->getText());
                                 $this->bot->startConversation(new PulpitisOptionConversion());
                             break; 
                             case "4":  
                                 session()->put("p4" ,$val);
-                                $this->bot->reply("You have added Diagnosis Selection Number ".$answer->getText());
+                                $this->bot->reply($num." ".$answer->getText());
                                 $this->bot->startConversation(new PulpitisOptionConversion());
                             break; 
                             case "next": 

@@ -10,6 +10,9 @@ body{
     zoom: 100%;
 }
 
+.rtl-el{
+    direction: rtl;
+}
 /*****     firstPage  ******/
 
 #firstPage{
@@ -21,6 +24,7 @@ body{
     padding: 10px;
     font-size: 50px;
     font-weight: 500;
+    display: flex;
 }
 /*****     carousel  ******/
 .carousel-caption-edit{
@@ -77,6 +81,7 @@ body{
 /***     Ask doctor     ***/
 #ask_doctor{
     padding-top: 130px;
+    direction: ltr;
 }
 .ask_back{
     height: 450px;
@@ -128,6 +133,9 @@ body{
 .dental_services{
     position: relative;
     z-index: 1;
+}
+.dental_service_div{
+    direction: ltr;
 }
 .service-detial{
     position: absolute;
@@ -235,7 +243,7 @@ body{
     border: 2px solid white;
     font-size: 20px;
     border-radius: 40px;
-    width: 120px;
+    width: 200px;
 }
 
 .footerlinks{
@@ -312,4 +320,225 @@ body{
 }
 .ourdoc-div:nth-of-type(3) ,.ourdoc-div:nth-of-type(4){
     right: -100%;
+}
+.showmore-doctor{
+    margin: 20px auto;
+}
+.showmore_btn{
+    border-radius: 25px;
+    padding: 4px 41px;
+    margin-top: 10px;
+    font-size: 24px;
+   
+}
+.stting{
+    position: absolute;
+    bottom: 20;
+    right: 20;
+}
+
+.stting i{
+   font-size: 25px;
+}
+.stting-content{
+    position: absolute;
+    background-color: #40B0DE;
+    bottom: -60;
+    right: -60px;
+    z-index: 555;
+      display: none;
+      padding: 12px;
+      border-radius: 5px;  
+}
+.stting-content a , .stting-content p{
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #f4f9fc;
+    margin-top: 8px;
+    cursor: pointer;
+
+}
+
+
+
+/********update ********/
+textarea.form-control{
+    padding: 8px;
+    overflow: hidden;
+
+    resize: none;
+}
+/* register div*/
+
+.divmid ,.divmid-login,.divmid-doctor{
+    overflow: hidden;
+
+    margin:-70% auto;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    box-shadow:3px 3px 3px 3px #a9aaac;
+    padding: 20px;
+    position: relative;
+    background: rgba(244,249,252,0);
+    background-color: #fff;
+    z-index: 1000;
+    width: 35%;
+}
+/* back button */
+.bt-back ,.bt-back-regist,.bt-back-doctor{
+    position: absolute;
+    top: 4%;
+    right: 6%;
+    cursor: pointer;
+    color: #007BFF;
+    font-size: 30px;
+    font-weight: 900;
+    
+}
+.bt-back{
+    top: 8%;
+}
+/*************/
+.divmid h2{
+ text-align: center;
+    color: #007bff;
+
+}
+
+.hide{
+    display: none;
+}
+/*                                            edit 31-12-2019   */
+/* logo login */
+.login-logo{
+    padding-top: 5%;
+    text-align: center;
+    color: #007BFF;
+    font-family: cursive;
+}
+.login-logo img{
+    width: 75px;
+}
+/* animate email char*/
+.email-div ,.password-div
+,.fname-div,.lname-div,.email-div1,.password-div1,.password-div1-confirm,.phone-div
+,.descripe-div{
+    position: relative;
+    padding-top: 32px;
+
+}
+.email-input ,.password-input
+,.fname-input,.lname-input,.email-input1,.password-input1,.password-input1-confirm,.phone-input
+,.select-input,.date-input,.descripe-input
+{
+    border: none;
+    border-radius: 0px;
+    border-bottom: 2px solid #007BFF;
+    background: none;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: transparent;
+    border-color: transparent;
+    outline: 0;
+    box-shadow: 0 0 0 0 transparent;
+    border-bottom: 2px solid #007BFF;
+}
+.email-char ,.password-char
+,.fname-char,.lname-char ,.email-char1,.password-char1,.password-char1-confirm ,.phone-char
+,.password-char1,.password-char1-confirm,.descripe-char{
+    position: absolute;
+    top: 39px;
+    left: 16px;
+    color: #7A8489;
+}
+
+/* password icon show hide*/
+.show-password,.hide-password
+,.show-password1,.hide-password1,.show-password2,.hide-password2{
+    color: #007BFF;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+}
+/*                                            end edit 31-12-2019   */
+.bt-sign-up{
+
+    display: inline;
+    cursor: pointer;
+}
+.bt-sign-up:hover{
+    background: none;
+    text-decoration: underline;
+    color: #007BFF;
+}
+
+/*****     profile picture upload  */
+
+
+.pro-picture{
+    text-align: center;
+    padding-top: 5%;
+}
+.pro-picture button{
+    margin: 10px;
+}
+.pro-picture img{
+    width: 200px;
+    height: 190px;;
+}
+.uploadfile{
+    visibility: hidden;
+}
+/* choose kind register  */                                     /* delete   */
+
+.chose-kind{
+    border: 2px solid blue;
+    border-radius: 25px;
+    box-shadow: 0 0 20px blue;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 15%;
+    width: 800px;
+    color: blue;
+    background: rgba(244,249,252,0.6);
+    position: relative;
+}
+
+.chose-div{
+    float: left;
+    margin-left: 55px;
+    /*width: 55px;*/
+    text-align: center;
+}
+.chose-div img{
+    cursor: pointer;
+    padding: 10px;
+    width: 300px;
+    height: 300px;
+}
+.chose-div img:hover{
+    border: 2px solid;
+    border-radius: 200px;
+}
+
+
+
+/******************/
+.showmoreservice{
+    position: absolute;
+    cursor: pointer;
+    bottom:-3;
+    right: 10;
+    color: #007BFF;
+    font-size: 18px;
+    font-weight: 800;
+
+}
+.showmoreservice:hover{
+   color: #000;
+    
 }

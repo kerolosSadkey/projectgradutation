@@ -11,140 +11,163 @@ class treatmentSeeder extends Seeder
      */
     public function run()
     {
+      DB::table('treatments')->insert([
+        "Symptoms"=>'Severe pain',
+        "Symptomsar"=>'هل تشعر بألم حاد',
+        "analgesics"=> 'catayad 50g',
+        "antibiotics"=>'null',
+        "SymId"=>1
+      ]);
+
+      DB::table('treatments')->insert([
+          "Symptoms"=>'migraine pain and Throbbing pain Necrosis',
+          "Symptomsar"=>'هل تشعر بصداع نصفي مصاحبه الم عميق في السنة',
+          "analgesics"=> 'catayad 50g',
+          "antibiotics"=>'null',
+          "SymId"=>1
+        ]);
         DB::table('treatments')->insert([
-              "Symptoms"=>'Severe pain',
-              "analgesics"=> 'catayad 50g',
-              "antibiotics"=>'null',
-              "SymId"=>1
-            ]);
+          "Symptoms"=>'Pain during eating',
+          "Symptomsar"=>'هل تشعر بألم اثناء تناول الطعام',
+          "analgesics"=> 'EPTOL 200 MG',
+          "antibiotics"=>'null',
+          "SymId"=>1
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'Evoke pain simultaneously',
+          "Symptomsar"=>'هل تشعر بألم مستمر طول الوقت لا يتوقف',
+          "analgesics"=> 'paracetamol',
+          "antibiotics"=>'null',
+          "SymId"=>1
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'Pain and sensitivity in the jaw around the tooth',
+          "Symptomsar"=>'هل تشعر بألم وحساسية في الفك حول السنة',
+          "analgesics"=> 'Ibuprofen 600g',
+          "antibiotics"=>'null',
+          "SymId"=>1
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'Swelling of the jaw or face' ,
+          "Symptomsar"=>'هل يوجد تورم في الفك أو الوجة',
+          "analgesics"=>'AVENTYL 25mg',
+          "antibiotics"=>'null',
+          "SymId"=>1
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'Prolonged pain or sensitivity after exposure to heat' ,
+          "Symptomsar"=>'هل تشعر بألم لفترة طويلة وحساسية عند التعرض لحرارة',
+          "analgesics"=>'NORTRILEN 25mg',
+          "antibiotics"=>'null',
+          "SymId"=>1
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'sensitivity to hot,cold food and sweet food' ,
+          "Symptomsar"=>'هل تشعر بألم عند شرب ماء بارد أو ساخن أو عند تناول الطعام ',
+          "analgesics"=>'Pamelor',
+          "antibiotics"=>'null',
+          "SymId"=>1
+        ]);
 
-            DB::table('treatments')->insert([
-                "Symptoms"=>'migraine pain and Throbbing pain Necrosis',
-                "analgesics"=> 'catayad 50g',
-                "antibiotics"=>'null',
-                "SymId"=>1
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'Pain during eating',
-                "analgesics"=> 'EPTOL 200 MG',
-                "antibiotics"=>'null',
-                "SymId"=>1
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'Evoke pain simultaneously',
-                "analgesics"=> 'paracetamol',
-                "antibiotics"=>'null',
-                "SymId"=>1
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'Pain and sensitivity in the jaw around the tooth',
-                "analgesics"=> 'Ibuprofen 600g',
-                "antibiotics"=>'null',
-                "SymId"=>1
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'Swelling of the jaw or face' ,
-                "analgesics"=>'AVENTYL 25mg',
-                "antibiotics"=>'null',
-                "SymId"=>1
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'Prolonged pain or sensitivity after exposure to heat' ,
-                "analgesics"=>'NORTRILEN 25mg',
-                "antibiotics"=>'null',
-                "SymId"=>1
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'sensitivity to hot,cold food and sweet food' ,
-                "analgesics"=>'Pamelor',
-                "antibiotics"=>'null',
-                "SymId"=>1
-              ]);
-
-              DB::table('treatments')->insert([
-                "Symptoms"=>'Gum swelling and the gums may increase from slight redness to severe pain' ,
-                "analgesics"=>'Pamelor',
-                "antibiotics"=>'amrizole 500g',
-                "SymId"=>2
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'Mouthful smell' ,
-                "analgesics"=>'null',
-                "antibiotics"=>'flaqyle 500g(an adobe)',
-                "SymId"=>2
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'Pain when chewing food' ,
-                "analgesics"=>'null',
-                "antibiotics"=>'flaqyle 500g(an adobe)',
-                "SymId"=>2
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'lancinating pain and severe calculus' ,
-                "analgesics"=>'paracetamol',
-                "antibiotics"=>'Tetracycline',
-                "SymId"=>2
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'spontaneous bleeding' ,
-                "analgesics"=>'null',
-                "antibiotics"=>'Metronidazole',
-                "SymId"=>2
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'pain when the gums are touched' ,
-                "analgesics"=>'null',
-                "antibiotics"=>'FORTEPEN 0.4GM',
-                "SymId"=>2
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'pus between the teeth and gum' ,
-                "analgesics"=>'null',
-                "antibiotics"=>'Clindamycin 300 g side effect diarrhea',
-                "SymId"=>2
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'Redness and bleeding from brush use' ,
-                "analgesics"=>'null',
-                "antibiotics"=>'Oral rinse with antibiotics containing chlorhexidine for oral cleansing',
-                "SymId"=>2
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'Migraine' ,
-                "analgesics"=>'paracetamol',
-                "antibiotics"=>'null',
-                "SymId"=>3
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'Etching sensation' ,
-                "analgesics"=>'null',
-                "antibiotics"=>'Clindamycin 300 g side effect diarrhea',
-                "SymId"=>3
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'brown or black spots appearing on your teeth' ,
-                "analgesics"=>'NORTRILEN 25mg',
-                "antibiotics"=>'Oral rinse with antibiotics containing chlorhexidine for oral cleansing',
-                "SymId"=>3
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'pain with cold water or eating' ,
-                "analgesics"=>'catayad 500g',
-                "antibiotics"=>'null',
-                "SymId"=>3
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'pain with cold water or eating' ,
-                "analgesics"=>'null',
-                "antibiotics"=>'Tetracycline',
-                "SymId"=>3
-              ]);
-              DB::table('treatments')->insert([
-                "Symptoms"=>'either continuous pain keeping you awake' ,
-                "analgesics"=>'null',
-                "antibiotics"=>'FORTEPEN 0.4GM',
-                "SymId"=>3
-              ]);
+        DB::table('treatments')->insert([
+          
+         "Symptoms"=>'Gum swelling and the gums may increase from slight redness to severe pain' ,
+         "Symptomsar"=>'هل هناك تورم في اللثة وهل كان هناك احمرار خفيف تحول الي ألم شديد',
+         "analgesics"=>'Pamelor',
+          "antibiotics"=>'amrizole 500g',
+          "SymId"=>2
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'Mouth odor persists all the time' ,
+          "Symptomsar"=>'هل هناك رائحة بالفم مستمرة طول الوقت',
+          "analgesics"=>'null',
+          "antibiotics"=>'flaqyle 500g(an adobe)',
+          "SymId"=>2
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'Pain when chewing food' ,
+          "Symptomsar"=>'هل هناك ألم اثناء مضغ الطعام',
+          "analgesics"=>'null',
+          "antibiotics"=>'flaqyle 500g(an adobe)',
+          "SymId"=>2
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'lancinating pain and severe calculus' ,
+          "Symptomsar"=>'هل تشعر بألم شديد مستمر طول الوقت لا يزول',
+          "analgesics"=>'paracetamol',
+          "antibiotics"=>'Tetracycline',
+          "SymId"=>2
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'spontaneous bleeding' ,
+          "Symptomsar"=>'هل هناك نزيف  في اللثة',
+          "analgesics"=>'null',
+          "antibiotics"=>'Metronidazole',
+          "SymId"=>2
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'pain when the gums are touched' ,
+          "Symptomsar"=>'هل يوجد ألم عند لمس اللثة',
+          "analgesics"=>'null',
+          "antibiotics"=>'FORTEPEN 0.4GM',
+          "SymId"=>2
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'pus between the teeth and gum' ,
+          "Symptomsar"=>'هل يوجد صديد بين الأسنان واللثة',
+          "analgesics"=>'null',
+          "antibiotics"=>'Clindamycin 300 g side effect diarrhea',
+          "SymId"=>2
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'Redness and bleeding from brush use' ,
+          "Symptomsar"=>'هل يوجد أحمرار ودم عند استخدام فرشاة الأسنان',
+          "analgesics"=>'null',
+          "antibiotics"=>'Oral rinse with antibiotics containing chlorhexidine for oral cleansing',
+          "SymId"=>2
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'Migraine during  brush use ' ,
+          "Symptomsar"=>'هل تشعرين بالم عند استخدام فرشاة الاسنان',
+          "analgesics"=>'paracetamol',
+          "antibiotics"=>'null',
+          "SymId"=>3
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'Etching sensation' ,
+          "Symptomsar"=>'هل هناك احساس بالم مثل الحفر  مستمر لا يزول ابدأ',
+          "analgesics"=>'null',
+          "antibiotics"=>'Clindamycin 300 g side effect diarrhea',
+          "SymId"=>3
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'brown or black spots appearing on your teeth' ,
+          "Symptomsar"=>'هل يظهر لون بني أو أسود علي السنة',
+          "analgesics"=>'NORTRILEN 25mg',
+          "antibiotics"=>'Oral rinse with antibiotics containing chlorhexidine for oral cleansing',
+          "SymId"=>3
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'pain with cold water or eating' ,
+          "Symptomsar"=>'هل تشعر بألم اثناء الاكل أو شرب الماء ',
+          "analgesics"=>'catayad 500g',
+          "antibiotics"=>'null',
+          "SymId"=>3
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'pain with cold water or eating' ,
+          "Symptomsar"=>'هل تشعر بألم مع شرب الماء أو الاكل ',
+          "analgesics"=>'null',
+          "antibiotics"=>'Tetracycline',
+          "SymId"=>3
+        ]);
+        DB::table('treatments')->insert([
+          "Symptoms"=>'either continuous pain keeping you awake' ,
+          "Symptomsar"=>'هل تشعر بألم شديد مستمر يبقيك يقظ طول الليل',
+          "analgesics"=>'null',
+          "antibiotics"=>'FORTEPEN 0.4GM',
+          "SymId"=>3
+        ]);
     }
 
 

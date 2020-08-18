@@ -7,6 +7,11 @@
     <title>BotMan Studio</title>
 
     <!-- Fonts -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo-header2.png') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type="text/css">
     
     <!-- Styles -->
@@ -52,10 +57,46 @@
                 flex-direction: column;
             }
         }
+
+        #nav12{
+            height: 90px;
+        }
     </style>
+    
 </head>
 <body style="background-image:url('{{ asset('Img/friendly-chatbot.jpg') }}') ">
+
+    @include('navbarextend')
 <div class="container">
+   
+    @php
+        $language = session()->get('lang');
+        if($language =='en'){
+            echo "<script>
+                $(function(){
+                    $('.profile-div-lang-img').attr('src','img/en.png');
+
+                    $('.dental_service_div h4').css('text-align','left');
+                    $('.dental_service_div p').css('text-align','left');
+                    $('body').css('direction','ltr');
+                  
+                });
+            </script>";
+            }elseif($language == 'ar'){
+                echo "<script>
+                $(function(){
+                    $('.profile-div-lang-img').attr('src','img/ar.png');
+
+                    $('.dental_service_div h4').css('text-align','right');
+                    $('.dental_service_div p').css('text-align','right');
+                    $('body').css('direction','rtl');
+                    $('.sign-in').css('width','170px')
+                   
+                });
+            </script>";
+            }
+        @endphp
+       
     <div class="content">
       
 

@@ -55,7 +55,7 @@ class editprofileController extends Controller
                      'image'=> $namefile
 
                 ]);
-                return redirect();
+                return view("/home");
 
         }
     }

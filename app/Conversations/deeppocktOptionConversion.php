@@ -22,41 +22,62 @@ class deeppocktOptionConversion extends Conversation
             $arrid=[];
        
         $spys= DB::table('treatments')->select("treatments.*")->where("SymId",3)->get();
+        if(session()->get('lang') == "en"){
+            foreach($spys as $spy){
+                 array_push($arrsyps, $spy->Symptoms);
+                 array_push($arrid, $spy->id);
          
-       foreach($spys as $spy){
-            array_push($arrsyps, $spy->Symptoms);
-            array_push($arrid, $spy->id);
-    
-        }
+             }
+            }
+            else{
+             foreach($spys as $spy){
+                  array_push($arrsyps, $spy->Symptomsar);
+                  array_push($arrid, $spy->id);
+          
+              }
+        
+             $next="press to Next to continue";
+             $str="which do you feel  pain?";
+         
+              $next="اضغط التالي  للاستمرار";
+              $str="اي الم تشعر ؟";
+          }
        
-        $question = Question::create("What do you feel  pain?")->fallback('Unable choose option')
+        $question = Question::create($str)->fallback('Unable choose option')
         ->callbackId('ask option')
             ->addButtons([
                     Button::create($arrsyps[0])->value("1"),
                     Button::create($arrsyps[1])->value("2"),
                     Button::create($arrsyps[2])->value("3"),
-                    Button::create("press to Next question")->value("next"),
+                    Button::create($next)->value("next"),
                     
             ]);
                
             $this->bot->ask($question,function(Answer $answer){
+                if(session()->get('lang') == "ar"){
+                    $num="انت اختارت من الاعراض رقم ";
+                }
+               else{
+                       
+                    $num="You have added Diagnosis Selection Number ";
+                } 
                 if ($answer->isInteractiveMessageReply()){
 
                     $val=$answer->getValue();
                     switch($val){
                         case '1': 
                             session()->put("d1", $val);
-                            $this->bot->reply("You have added Diagnosis Selection Number ".$answer->getText());
+                            $this->bot->reply($num." ".$answer->getText());
                             $this->bot->startConversation(new deeppocktOptionConversion());
                         break;   
                         case '2': 
                             session()->put("d2", $val);
-                            $this->bot->reply("You have added Diagnosis Selection Number ".$answer->getText());
+                            $this->bot->reply($num." ".$answer->getText());
                             $this->bot->startConversation(new deeppocktOptionConversion());
                         break; 
                         case '3': 
                             session()->put("d3", $val);
-                            $this->bot->reply("You have added Diagnosis Selection Number ".$answer->getText());
+                            $this->bot->reply($num." ".$answer->getText());
                             $this->bot->startConversation(new deeppocktOptionConversion());
                         break; 
                         case 'next': 

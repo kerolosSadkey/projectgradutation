@@ -21,98 +21,120 @@
        @extends('navbarextend');
 
     <div class="container">
+        @if(isset($allpost))
+        @if(count($allpost) >0)
+            @foreach($allpost as $post)
+   <div class="comment-replay row allpost">
+       <!-- details of the person put post-->
+       <div class="col-2 text-center">
+           <div>
+               
+               
+               <img class="person_comment_img rounded-circle" src="{{ asset('publicimages/'.$post->image) }}">
+               <div class="text-center person_name">{{$post->fristname. " ".$post->lastname}}</div>
+               
+           </div>
+       </div>
+          
+       <div class="col-10">
+          
+           <p class="postbody">{{$post->body}}</p> 
+           <span class="idpost-span hide">{{ $post->id }}</span>
+           @php
+              $arrdate =explode(" ",$post->created_at_post);
+           @endphp
+            <span class="datepost">{{ $arrdate[0] }}</span>
+           @if(isset($post->imagepost))
+           @foreach(explode(',',$post->imagepost) as $img)
 
-        <div class="comment-replay row">
-            <!-- details of the person put post-->
-            <div class="col-2 text-center">
-                <div>
-                    <img class="person_comment_img rounded-circle" src="img/background-1.jpg">
-                    <div class="text-center">user name</div>
-                </div>
-            </div>
+               <img class="replay-image" src="{{ asset('publicimages/' .$img) }}">
+           @endforeach
+            @endif
+           
 
-            <div class="col-10">
-                sdds
-                <img class="image" src="">
-                <!-- interaction  like comment -->
-                <div class="interaction">
-                    <div class="interaction-like">
-                        <span>0 </span>
-                        <i class="fas fa-thumbs-up"></i>
-                        like
-                    </div>
-                    <div class="interaction-comment">
-                        <span>0 </span>
-                        <i class="fas fa-comment-alt"></i>
-                        comment
-                    </div>
-                </div>
+            @endforeach
+   @endif
+@endif
 
+   </div>
 
-
-                <!--make replay for cooment -->
-                <div class="make-replayied">
-                    <form>
-                        <div class="form-group">
-                            <textarea class="form-control" rows="1"></textarea>
-                        </div>
-                        <!--  upload img to explain the case of patient-->
-                        <div class="replay-upload-img">
-                            <div class="img-make-replay-upload"></div>
-                            <div class="make-replay-uploadimg-div">
-                                <button class="btn btn-primary make-replay-uploadimg-bt">
-                                    <i class="fas fa-camera"></i>
-                                </button>
-                                <input type="file" class="make-replay-file" accept="image/*" style="display: none;" multiple>
-                            </div>
-                        </div>
-                        <!--  to sent the comment -->
-                        <div class="make-replayied-send">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-arrow-alt-circle-right"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-
-                <!--  replayied comment -->
-                <div class="all">
-                    <div class="comments">
-                        <div class="row">
-                            <div class="col-2" style="float: left;">
-                                <div class="text-center">
-                                    <img class="comment_img rounded-circle" src="img/background-1.jpg" >
-                                    <div >user name</div>
-                                </div>
-
-                            </div>
-                            <div class="col-10" style="float: left;">
-                                <!--  text replay -->
-                                <p>replay 1</p>
-                                <img class="replay-image" src="">
-                                <!-- interaction replay like comment -->
-                                <div class="interaction-replay">
-                                    <div class="interaction-like">
-                                        <span>0</span>
-                                        <i class="fas fa-thumbs-up"></i>
-                                        like
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
-
+       
 
     </div>
 
+</div>
 
+    <!--/***********************************************************************************/-->
+
+
+    <div class="container">
+        @if(isset($allcomment))
+        @if(count($allcomment) >0)
+            @foreach($allcomment as $comment)
+   <div class="comment-replay row allpost">
+       <!-- details of the person put post-->
+       <div class="col-2 text-center">
+        
+       </div>
+          
+       <div class="col-10">
+          
+           <p class="postbody">{{$comment->body}}</p> 
+           <span class="idpost-span hide">{{ $comment->id }}</span>
+           @php
+              $arrdate =explode(" ",$comment->created_at_post);
+           @endphp
+            <span class="datepost">{{ $arrdate[0] }}</span>
+           @if(isset($comment->imagepost))
+           @foreach(explode(',',$comment->imagepost) as $img)
+
+               <img class="replay-image" src="{{ asset('publicimages/' .$img) }}">
+           @endforeach
+            @endif
+           
+           
+                   
+
+           <!--  replayied comment -->
+           <div class="all">
+               <div class="comments">
+                   
+                   <div class="row">
+                       <div class="col-2" style="float: left;">
+                           <div class="text-center">
+                               <img class="person_comment_img rounded-circle" src="{{ asset('publicimages/'.$comment->image) }}">
+                               <div class="person_name" >{{$comment->fristname}} {{$comment->lastname}}</div>
+                           </div>
+                               
+                       </div>
+                       <div class="col-10" style="float: left;">
+                          
+                           <!--  text replay -->
+                           <p>{{ $comment->bodycomment }}</p>
+                           <span class="spanidcomment hide">{{ $comment->idcom }}</span>
+                           @if(isset($comment->imagecomment))
+                           @foreach(explode(',',$comment->imagecomment) as $img)
+                           <img class="replay-image" src=" {{ asset('publicimages/'. $img) }}">
+                           @endforeach
+                           @endif
+                          
+                       </div>
+                   </div>
+               </div>
+           </div>
+                      
+                   @endforeach
+               @endif
+               @endif
+
+       </div>
+
+
+   </div>
+
+       
+
+    </div>
 
 
 

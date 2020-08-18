@@ -14,14 +14,20 @@ class postController extends Controller
 
 
       public function index(){
-        $allpost= DB::table('users')->join('posts','posts.id_user','users.id')->select('users.*','posts.*')->paginate(3);
-         return view('ask',compact('allpost'));
+        $allpost= DB::table('users')->join('posts','posts.id_user_post','=','users.id')->select('users.*','posts.*')->paginate(3);
+        $allcomment= DB::table('comments')
+            ->join('posts','posts.id','=','comments.id_post')
+            ->join('users','comments.id_user_comment','=','users.id')
+            ->select("comments.*","comments.id as idcom",'users.*','posts.*')->get();
+        $numcomment=count($allcomment);
+
+        return view('/ask',compact('allcomment','allpost','numcomment'));
       }
   public function savepost(Request $request){
          $nameImages=[];
         $post =new post();
         $post->body=$request->input('postbody');
-        $post->id_user=auth()->user()->id;
+        $post->id_user_post=auth()->user()->id;
 
         if($request->hasFile('image')){
             $files=$request->file('image');
@@ -35,24 +41,19 @@ class postController extends Controller
         }
 
        $post->save();
-       $comment=DB::table('comments')->select('comments.*')->get();
+      /* $comment=DB::table('comments')->select('comments.*')->get();
        $numcomment =count($comment);
        $allpost= DB::table('users')->join('posts','posts.id_user','users.id')->select('users.*','posts.*')->paginate(3);
-        return view('/ask',compact('allpost','numcomment'));
+        return view('/ask',compact('allpost','numcomment'));*/
+        return redirect()->back();
     }
 
     public function readData(){
-          $allPost= DB::table('users')->join('posts','posts.id_user','users.id')->select('users.*','posts.*')->get();
+          $allPost= DB::table('users')->join('posts','posts.id_user_post','users.id')->select('users.*','posts.*')->get();
           return response($allPost);
     }
 
-    public function  showdata(){
-          $comment=DB::table('comments')->select('comments.*')->get();
-          $numcomment =count($comment);
-        $allpost= DB::table('users')->join('posts','posts.id_user','users.id')->select('users.*','posts.*')->paginate(3);
-
-        return view('/ask',compact('allpost','numcomment'));
-    }
+    
 
     public function updatepost(Request $request){
         $post=post::find($request->input('id'));
@@ -60,19 +61,18 @@ class postController extends Controller
         $post->body=$request->input("postbodyedit");
         $post->save();
          }
-        $comment=DB::table('comments')->select('comments.*')->get();
+       /* $comment=DB::table('comments')->select('comments.*')->get();
         $numcomment =count($comment);
         $allpost= DB::table('users')->join('posts','posts.id_user','users.id')->select('users.*','posts.*')->paginate(3);
-         return view('/ask',compact('allpost','numcomment'));
+         return view('/ask',compact('allpost','numcomment'));*/
+         return redirect()->back();
        
     }
     public function deletepost(Request $request){
           $post= post::find($request->input('id'));
           $post->delete();
-          $comment=DB::table('comments')->select('comments.*')->get();
-          $numcomment =count($comment);
-          $allpost= DB::table('users')->join('posts','posts.id_user','users.id')->select('users.*','posts.*')->paginate(3);
-           return view('/ask',compact('allpost','numcomment'));
+         
+           return redirect()->back();
     } 
 
 }

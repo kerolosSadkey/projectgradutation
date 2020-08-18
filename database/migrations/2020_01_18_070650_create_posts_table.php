@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->string('body');
             $table->mediumText('imagepost')->nullable();
-            $table->bigInteger('id_user')->unsigned();
+            $table->bigInteger('id_user_post')->unsigned();
             $table->timestamp('created_at_post', 0)->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('update__at_post', 0)->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');

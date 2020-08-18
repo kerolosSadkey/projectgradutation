@@ -27,14 +27,26 @@ class optionConversation extends Conversation
             $arrid=[];
        
         $spys= DB::table('treatments')->select("treatments.*")->where("SymId",1)->paginate(4);
+        if(session()->get('lang') == "ar"){
+            foreach($spys as $spy){
+                 array_push($arrsyps, $spy->Symptomsar);
+                 array_push($arrid, $spy->id);
          
+             }
+             $next="اضغط التالي للاستمرار";
+             $str="اي الم تشعر ؟";
+         }
+         else{
        foreach($spys as $spy){
             array_push($arrsyps, $spy->Symptoms);
             array_push($arrid, $spy->id);
     
         }
+        $next="press to Next to continue";
+        $str="which do you feel  pain?";
+    } 
        
-        $question = Question::create("What do you feel  pain?")->fallback('Unable choose option')
+        $question = Question::create($str)->fallback('Unable choose option')
         ->callbackId('ask option')
             ->addButtons([
                     Button::create($arrsyps[0])->value($arrid[0]),
@@ -46,6 +58,7 @@ class optionConversation extends Conversation
             ]);
                
             $this->bot->ask($question,function(Answer $answer){
+                
                 if ($answer->isInteractiveMessageReply()){
 
                     $val=$answer->getValue();

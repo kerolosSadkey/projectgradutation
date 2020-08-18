@@ -16,6 +16,7 @@ class CreateSymptomsTable extends Migration
         Schema::create('symptoms', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('namear');
         });
     }
 

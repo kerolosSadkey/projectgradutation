@@ -67,94 +67,101 @@ $('.interaction-comment').click(function(){
 })
 
 $(".editspan").click(function(e){
-    $(".showpostforedit").slideDown();("500");
+    $(".showpostforedit").slideDown("500");
 
      
-   var p= $(this).parent().children().eq(3).text();
-   var p1= $(this).parent().children().eq(4).text();
+   var p= $(this).parent().parent().children().eq(2).text();
+   var p1= $(this).parent().parent().children().eq(3).text();
    $("#postidedit").val(p1);
    console.log(p);
-     $(".showpostforedit #postbodytextarea").val(p + p1);
+     $(".showpostforedit #postbodytextarea").val(p);
     
 });
+
+
+$(".edit-comment").click(function(e){
+    $(".showcommentforedit").slideDown("500");
+
+     
+   var p= $(this).parent().parent().children().eq(2).text();
+   var p1= $(this).parent().parent().children().eq(3).text();
+   $("#commentidedit").val(p1);
+   console.log(p);
+     $(".showcommentforedit #commentbodytextarea").val(p);
+    
+});
+
 $(".showpostforedit #cancle").click(function(){
        $(".showpostforedit").slideUp("500");
 });
 
-$(".showpostfordelete #cancle").click(function(){
+$(".showpostfordelete #cancle ").click(function(){
     $(".showpostfordelete").slideUp("500");
 });
-/*
-$('#editpostform').on("submit",function (e){
-    e.preventDefault();
- var idpost= $("#postidedit").val();
- 
-$.ajax({
-  type:'post',
-  url:"/updatedpost/"+idpost,
-  data:$("#editpostform").serialize(),
-  success:function (respos) {
-      $(".showpostforedit").slideUp("500");
-      console.log('okkk'+ respos);
-  },
-  error:function(error){
-      console.log(error);
-        },
-        statusCode: {
-            200: function(){
-                alert("20000000000000");
-                     location.reload()
-                 },
-            500: function(){
-                alert("500000000");
-                     location.reload()
-                 } 
-        }
-});
-});*/
 
+$(".showcommentfordelete #cancle ").click(function(){
+    $(".showcommentfordelete").slideUp("500");
+});
+$(".showcommentforedit #cancle ").click(function(){
+    $(".showcommentforedit").slideUp("500");
+});
+$(".showcommentfordelete #cancle ").click(function(){
+    $(".showcommentfordelete").slideUp("500");
+});
 $(".deletespan").click(function(e){
     $(".showpostfordelete").slideDown();("500");
 
      
    var p= $(this).attr("id");
    $("#postiddelete").val(p);
-   console.log(p);
-     $(".showpostforedit #postbodytextarea").val(p + p1);
+   
     
 });
+
+$(".deletespancomment").click(function(e){
+    $(".showcommentfordelete").slideDown("500");
+
+     
+   var p= $(this).attr("id");
+   $("#commentiddelete").val(p);
+   
+    
+});
+
+
  $(".cancle-post-submit").on("click",function(){
-    $(".showpostfordelete").slideUp();("500");
+    $(".showcommentfordelete").slideUp();("500");
  });
 
- 
-/*
-
-$('#deletpostform').on("submit",function (e){
-    e.preventDefault();
-    alert("ccccccccccccc");
- var idpost= $("#postiddelete").val();
- 
-$.ajax({
-  type:'post',
-  url:"/deletedpost/"+idpost,
-  data:idpost,
-  success:function (respos) {
-      $(".showpostforedit").slideUp("500");
-      alert("dddddddddddd");
-  },
-  error:function(error){
-      console.log(error);
-        },
-        statusCode: {
-            200: function(){
-                alert("dddddddddddd");
-                     location.reload()
-                 },
-            500: function(){
-                alert("dddddddddddd");
-                     location.reload()
-                 } 
-        }
+ $(".cancle-post-submit").on("click",function(){
+    $(".showcommentfordelete").slideUp("500");
+ });
+ $(".stting").click(function(){
+    var bro=$(this).siblings(".stting-content").eq(0);
+    bro.toggle(100);
 });
-});*/
+ 
+$(".sttingcomment").click(function(){
+    var bro=$(this).siblings(".stting-content-comment").eq(0);
+    bro.toggle(100);
+});
+
+$(".showcomment").click(function(){
+  var el=  $(this).parent().parent().parent().children().eq(7).children().eq(0);
+  //var el  =$(this).parent().parent().after('.all.comments');
+  console.log(el);
+     el.slideToggle("500");
+});
+
+
+//********************* */
+$(".showimg #cancle").on("click",function(){
+    $(".showimg").slideUp();("500");
+ });
+
+ $("img").on("click",function(){
+    $(".showimg").slideDown("500");
+    var srcimg = $(this).attr("src");
+     $(".showimg img").attr("src",srcimg);
+
+ });

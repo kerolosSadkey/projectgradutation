@@ -20,6 +20,34 @@
 
         @extends("navbarextend");
     <div class="container">
+        @php
+        $language = session()->get('lang');
+        if($language =='en'){
+            echo "<script>
+                $(function(){
+                    $('.profile-div-lang-img').attr('src','img/en.png');
+
+                    $('.dental_service_div h4').css('text-align','left');
+                    $('.dental_service_div p').css('text-align','left');
+                    $('body').css('direction','ltr');
+                    $('.showmoreservice').css('right','10');
+                    $('.showmoreservice').css('bottom','-2')
+                });
+            </script>";
+            }elseif($language == 'ar'){
+                echo "<script>
+                $(function(){
+                    $('.profile-div-lang-img').attr('src','img/ar.png');
+
+                    $('.dental_service_div h4').css('text-align','right');
+                    $('.dental_service_div p').css('text-align','right');
+                    $('body').css('direction','rtl');
+                    $('.sign-in').css('width','170px')
+                   
+                });
+            </script>";
+            }
+        @endphp
         <!--  add post(main comment) -->
         <div class="add-post">
             <form action="{{route('saveposts')}}" method="post" enctype="multipart/form-data" id="form-data">
@@ -50,18 +78,29 @@
             <!-- details of the person put post-->
             <div class="col-2 text-center">
                 <div>
-                    <div class="text-center person_name">{{$post->fristname}} {{$post->lastname}}</div>
+                    
                     <img class="person_comment_img rounded-circle" src="{{ asset('publicimages/'.$post->image) }}">
+                    <div class="text-center person_name">{{$post->fristname. " ".$post->lastname}}</div>
                     
                 </div>
             </div>
                
             <div class="col-10">
-                <span class="editspan">Edit</span><br>
-                <button  id="{{ $post->id }}"  class="deletespan">Delete</button>
+                @if($post->id_user_post == auth()->user()->id || auth()->user()->role=="Admin")
+                <div class="stting"> <i class="fas fa-ellipsis-v"></i></div>
+                @endif
+                <div class="stting-content">
+                   @if( $post->id_user_post == auth()->user()->id )
+                     <p href="" class="update-doctor editspan">Edit</p>
+                     @endif
+                     <a href="#" id="{{ $post->id }}"  class="deletespan" >delete</a>
+                </div>
                 <p class="postbody">{{$post->body}}</p> 
-                <span class="idpost-span">{{ $post->id }}</span>
-                 <span>{{ $post->created_at_post }}</span>
+                <span class="idpost-span hide">{{ $post->id }}</span>
+                @php
+                   $arrdate =explode(" ",$post->created_at_post);
+                @endphp
+                 <span class="datepost">{{ $arrdate[0] }}</span>
                 @if(isset($post->imagepost))
                 @foreach(explode(',',$post->imagepost) as $img)
 
@@ -72,27 +111,17 @@
 
                 <!-- interaction  like comment -->
                 <div class="interaction">
-                    <div class="interaction-like">
+                <!--    <div class="interaction-like">
 
                     
-                      <a href="{{route('likes')}}" id="like-action"> <span ></span>
-                          <span class="id_post-like">{{$post->id}}</span>
+                      <a href="" id="like-action"> <span ></span>
+                          <span class="id_post-like"></span>
                         <i class="fas fa-thumbs-up"></i>
                           like</a>
-                    </div>
+                    </div>-->
 
-                    <div class="interaction-comment">
-                        @if(isset($allcomment))
-                            @foreach($allcomment as $comment)
-                                @if($post->id ==$comment->id_post)
-                        <span id="numcomment">{{$numcomment}}</span>
-                                @endif
-                            @endforeach
-                        @endif
-                            <a href="{{route('showcomment', $post->id)}}">
-                                <i class="fas fa-comment-alt"></i>
-                                comment </a>
-
+                    <div class="interaction-comment">  
+                            <p href="#" class="showcomment"><i class="fas fa-comment-alt"></i>  comment </p>
 
                     </div>
 
@@ -132,40 +161,52 @@
                     </form>
                 </div>
 
-            @if(isset($allcomment))
+            
                 @if(count($allcomment) > 0 )
                     @foreach($allcomment as $comment)
 
-                            @if($post->id ==$comment->id_post )
-
+                            @if($post->id == $comment->id_post )
 
                 <!--  replayied comment -->
                 <div class="all">
-                    <div class="comments">
+                    <div class="comments hide">
+                        <p class="hide">dddd<p>
+                         <span class="postidshowcomment hide">{{ $post->id }}<span>
                         <div class="row">
                             <div class="col-2" style="float: left;">
                                 <div class="text-center">
                                     <img class="person_comment_img rounded-circle" src="{{ asset('publicimages/'.$comment->image) }}">
                                     <div class="person_name" >{{$comment->fristname}} {{$comment->lastname}}</div>
                                 </div>
-
+                                    
                             </div>
                             <div class="col-10" style="float: left;">
+                               
+                                @if($comment->id_user_comment == auth()->user()->id || auth()->user()->role=="Admin")
+                                <div class="sttingcomment"> <i class="fas fa-ellipsis-v"></i></div>
+                                 @endif
+                                <div class="stting-content-comment">
+                                    @if( $comment->id_user_comment == auth()->user()->id )
+                                 <p  class="update-doctor edit-comment">Edit</p>
+                                 @endif
+                                 <a href="#" id="{{ $comment->idcom }}"  class="deletespancomment" >delete</a>
+                               </div>
                                 <!--  text replay -->
                                 <p>{{ $comment->bodycomment }}</p>
+                                <span class="spanidcomment hide">{{ $comment->idcom }}</span>
                                 @if(isset($comment->imagecomment))
                                 @foreach(explode(',',$comment->imagecomment) as $img)
                                 <img class="replay-image" src=" {{ asset('publicimages/'. $img) }}">
                                 @endforeach
                                 @endif
                                 <!-- interaction replay like comment -->
-                                <div class="interaction-replay">
+                               <!--<div class="interaction-replay">
                                     <div class="interaction-like">
                                         <span>0</span>
                                         <i class="fas fa-thumbs-up"></i>
                                         like
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -173,7 +214,7 @@
                            @endif
                         @endforeach
                     @endif
-                @endif
+                
 
             </div>
 
@@ -224,8 +265,43 @@
             <span aria-hidden="true" id="cancle">&times;</span>
      </div>
 
-
+     <div class="showcommentforedit">
+        <form method="post" enctype="multipart/form-data" id="editpostform" action="{{ route("updatecomment") }}">
+         {{ csrf_field() }}
          
+         <div class="form-group">
+             <input class="form-control" id="commentbodytextarea" type="text" name="commentbodyedit">
+         </div>
+         <div class="form-group">
+             <input class="form-control" id="commentidedit" type="hidden" name="id">
+         </div>
+         <button type="submit" class="btn btn-primary edit-comment-submit">Edit Comment</button>
+         
+        </form>
+        <span aria-hidden="true" id="cancle">&times;</span>
+ </div>
+
+ <div class="showcommentfordelete">
+    <form method="post" enctype="multipart/form-data" id="deletpostform" action="{{ route('deletecomment') }}">
+     {{ csrf_field() }}
+    
+    <h3>Do you sure delete this post?</h3>
+     <div class="form-group">
+         <input class="form-control" id="commentiddelete" type="text" name="id">
+     </div>
+     <button type="submit" class="btn btn-primary delete-comment-submit">Delete Post</button>
+     <button type="button" class="btn btn-primary cancle-comment-submit">cancle</button>
+     
+    </form>
+    <span aria-hidden="true" id="cancle">&times;</span>
+</div>
+       
+
+       <div class="showimg">
+           <img src="">
+           <span aria-hidden="true" id="cancle">&times;</span>
+       </div>
+
     </div>
           
       
